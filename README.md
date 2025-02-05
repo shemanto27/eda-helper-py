@@ -1,101 +1,158 @@
-# EDA Helper Function - Boost your Exploretory Data Analysis Process!
+# My EDA Helper - Boost Your Exploratory Data Analysis Process! 🚀
 
+[![PyPI Version](https://img.shields.io/pypi/v/my_eda_helper?color=blue)](https://pypi.org/project/my_eda_helper/)
 
-## Credit
+[![Python Version](https://img.shields.io/badge/python-3.6%2B-blue)](https://www.python.org/downloads/)
 
-- I first came to this idea of using helper function from a course by [@MisbahullahSheriff](https://github.com/MisbahullahSheriff) and it was brilliant. This EDA helper function originally was created by [@MisbahullahSheriff](https://github.com/MisbahullahSheriff). Now I have edited the file and organized it for easy to use.Extra functions has been added by me.
+[![License](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/licenses/MIT)
 
+[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen)](https://github.com/shemanto27/eda-helper-py/pulls)
 
-## Installation
+**EDA Helper** is a Python package designed to streamline your Exploratory Data Analysis (EDA) process. It provides a collection of helper functions to quickly analyze, visualize, and summarize datasets. Whether you're working with numeric, categorical, or datetime data, this package has you covered!
 
-Use in Google Colab: put the fill in the notebook's directory
+---
+
+## Credits 🙏
+
+This package is inspired by the brilliant work of [@MisbahullahSheriff](https://github.com/MisbahullahSheriff). The original EDA helper functions were created by him, and I have extended and organized them for easier use. Additional functions and improvements have been added by me ([@shemanto27](https://github.com/shemanto27)).
+
+---
+
+## Installation 📦
+
+You can install the package via `pip`:
 
 ```bash
-import google.colab.drive as drive
-drive.mount('/content/drive', force_remount=True)
-
-import sys
-import os
-sys.path.append('<your_directory>')
-import eda_helper_functions as ehf
+pip install my_eda_helper
 ```
-    
-## Step-by-Step EDA
 
--  Import Libraries
+For Google Colab users, install it directly in your notebook:
+```bash
+!pip install my_eda_helper
+```
 
--  Read `training` dataset, we perform EDA only on `training` dataset
+## Usage 🛠️
 
-- High-level Analysis
-    - Data Summary:
-        - .info() method
-        - .describe() method on `numeric` and `categorical` features separately
+### 1. Import the Package
+```python
+import my_eda_helper as eda
+```
 
-    - Missing Data:
-        - find missing value with number and percentages
+### 2. High-Level Analysis
 
-            ```bash
-                ehf.missing_info(df)
-            ```
-        - bar plot for better visualization of missing data
-        
-             ```bash
-                ehf.plot_missing_info(df)
-            ```
-    
-    - Outliers:
-        - Isolation forest
+#### Missing Data
 
-    - Pair plots:
-        ```bash
-            ehf.pair_plots(df)
-        ```
+**Find Missing Values:**
+```python
+missing_data = eda.missing_info(df)
+print(missing_data)
+```
 
-    - Correlation Analysis(heatmaps):
-        - Numeric(Pearson's/Spearman's)
-        - Categorical(Cramer's V)
+**Plot Missing Data:**
+```python
+eda.plot_missing_info(df)
+```
 
-        ```bash
-            ehf.correlation_heatmap(df)
-        ```
+#### Correlation Analysis
 
-        ```bash
-            ehf.cramersV_heatmap(df)
-        ```
+**Numeric Features (Pearson/Spearman):**
+```python
+eda.correlation_heatmap(df)
+```
 
+**Categorical Features (Cramer's V):**
+```python
+eda.cramersV_heatmap(df)
+```
 
+#### Pair Plots
+```python
+eda.pair_plots(df)
+```
 
-- Detailed Analysis of each Columns
+### 3. Detailed Analysis
 
-    ```bash
-        df.columns # find all columns   
-    ```
-    - Summary
+#### Numeric Features
 
-        ```bash
-            ehf.cat_summary(df, "<cat_feature>")
-        ```
+**Summary:**
+```python
+eda.num_summary(df, "Age")
+```
 
-    - Univariate plots
+**Univariate Plots:**
+```python
+eda.num_univar_plots(df, "Fare")
+```
 
-        ```bash
-            ehf.cat_univar_plots(df, "<cat_feature>")
-        ```
-    - Bivariate plots
+**Bivariate Plots:**
+```python
+eda.num_bivar_plots(df, "Age", "Fare")
+```
 
-        ```bash
-            ehf.num_cat_bivar_plots(
-            data=train,
-            num_var="<num_feature>",
-            cat_var="<cat_feature>"
-            )
-        ```
-    - Hypothesis Testing(normality, strength of association)
+#### Categorical Features
 
-        ```bash
-            ehf.num_cat_bivar_plots(
-            data=train,
-            num_var="<num_feature>",
-            cat_var="<cat_feature>"
-            )
-        ```    
+**Summary:**
+```python
+eda.cat_summary(df, "Sex")
+```
+
+**Univariate Plots:**
+```python
+eda.cat_univar_plots(df, "Embarked")
+```
+
+**Bivariate Plots:**
+```python
+eda.num_cat_bivar_plots(df, "Fare", "Sex")
+```
+
+### Hypothesis Testing
+
+**Numeric vs Numeric:**
+```python
+eda.num_num_hyp_testing(df, "Age", "Fare")
+```
+
+**Numeric vs Categorical:**
+```python
+eda.num_cat_hyp_testing(df, "Fare", "Sex")
+```
+
+**Categorical vs Categorical:**
+```python
+eda.hyp_cat_cat(df, "Sex", "Survived")
+```
+
+---
+
+## Contributing 🤝
+Contributions are welcome! If you have ideas for new features, improvements, or bug fixes, please feel free to:
+
+1. Fork the repository.
+2. Create a new branch:  
+   ```bash
+   git checkout -b feature/YourFeatureName
+   ```
+3. Commit your changes:  
+   ```bash
+   git commit -m 'Add some feature'
+   ```
+4. Push to the branch:  
+   ```bash
+   git push origin feature/YourFeatureName
+   ```
+5. Open a pull request.
+
+Please ensure your code follows the project's style and includes appropriate tests.
+
+---
+
+## License 📄
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+---
+
+## Support 💬
+If you have any questions, suggestions, or issues, please open an issue on the GitHub repository.
+
+**Happy EDA! 🎉**
