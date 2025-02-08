@@ -43,6 +43,19 @@ def rotate_ylabels(ax, angle=0):
 
 # missing values
 def missing_info(data):
+"""
+    Returns a DataFrame summarizing the missing data in the given dataset.
+
+    Parameters:
+    -----------
+    data : pd.DataFrame
+        The input DataFrame to analyze.
+
+    Returns:
+    --------
+    pd.DataFrame
+        A DataFrame with variables as the index, and columns for the count and percentage of missing values.
+  """
   na_cols = [col for col in data.columns if data[col].isna().any()]
   na_counts = [data[col].isna().sum() for col in na_cols]
   na_pct = [(data[col].isna().mean() * 100) for col in na_cols]
